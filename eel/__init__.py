@@ -165,6 +165,10 @@ def spawn(function, *args, **kwargs):
 
 # Bottle Routes
 
+@btl.route('/<path><:re:((\/\w+)+|\/?)$>')
+def redirect_to_index(path):
+    btl.redirect('/{}/index.html'.format(path))
+
 @btl.route('/eel.js')
 def _eel():
     start_geometry = {'default': {'size': _start_args['size'],
